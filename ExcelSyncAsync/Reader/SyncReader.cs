@@ -1,4 +1,4 @@
-﻿namespace TriedExcel.Reader
+namespace TriedExcel.Reader
 {
     using System;
     using System.Collections.Generic;
@@ -23,6 +23,7 @@
             excel.EnableAnimations = true;
             wkb.Close(true);
             excel.Quit();
+            ExcelFeatures.CloseExcelExe(excel);
         }
 
         public Information CalculateSingleWorksheetSync(Excel.Worksheet wks)
