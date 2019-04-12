@@ -1,6 +1,7 @@
-﻿namespace TriedExcel
+namespace TriedExcel
 {
     using System;
+    using System.Runtime.InteropServices;
     using Excel = Microsoft.Office.Interop.Excel;
 
     public static class ExcelFeatures
@@ -15,6 +16,11 @@
             return lastRow;
         }
 
+        public static void CloseExcelExe(Excel.Application excel)
+        {
+            Marshal.ReleaseComObject(excel);
+        }
+
         public static int LastRowTotal(Excel.Worksheet wks)
         {
             Excel.Range lastCell = wks.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
@@ -25,8 +31,7 @@
                         string fileName, bool readOnly = false,
                         bool editable = true, bool updateLinks = true)
         {
-            return excelInstance.Workbooks.Open(fileName, updateLinks, readOnly, Editable:editable);
+            return excelInstance.Workbooks.Open(fileName, updateLinks, readOnly, Editable: editable);
         }
-
     }
 }
